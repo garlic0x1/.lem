@@ -3,8 +3,7 @@
 (in-package :config/misc)
 
 ;; bigger font
-(font-size-increase)
-(font-size-increase)
+(font-size-decrease)
 
 ;; Disable Lem's auto recenter
 (setf *scroll-recenter-p* nil)

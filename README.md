@@ -3,10 +3,7 @@
 ## Usage
 
 ```shell
-$ git clone https://github.com/fukamachi/.lem ~/.lem
-$ mkdir -p ~/common-lisp
-$ cd ~/common-lisp
-$ git clone git@github.com:fukamachi/lem-vi-sexp
+$ git clone https://github.com/garlic0x1/.lem ~/.lem
 ```
 
 ## See Also
