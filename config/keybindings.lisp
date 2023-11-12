@@ -33,12 +33,12 @@
 
 ; help keys
 (define-keys *global-keymap*
-  ("C-h b" 'describe-bindings)
-  ("C-h k" 'describe-key)
-  ("C-h a" 'lem-lisp-mode:lisp-apropos)
-  ("C-h c" 'apropos-command)
-  ("C-h p" 'lem-lisp-mode:lisp-apropos-package)
-  ("C-h f" 'lem-lisp-mode:lisp-describe-symbol))
+  ("C-a b" 'describe-bindings)
+  ("C-a k" 'describe-key)
+  ("C-a a" 'lem-lisp-mode:lisp-apropos)
+  ("C-a c" 'apropos-command)
+  ("C-a p" 'lem-lisp-mode:lisp-apropos-package)
+  ("C-a f" 'lem-lisp-mode:lisp-describe-symbol))
 
 ; start repls
 (define-keys *global-keymap* 
