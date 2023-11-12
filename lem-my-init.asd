@@ -1,5 +1,5 @@
 (defsystem "lem-my-init"
-  :author "Eitaro Fukamachi"
+  :author "garlic0x1"
   :license "BSD 2-Clause"
   :description "Configurations for lem"
   :serial t
