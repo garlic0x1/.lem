@@ -1,5 +1,6 @@
 (defpackage #:config/keybindings
-  (:use :cl :lem))
+  (:use :cl :lem)
+  (:export #:kill-buffer-and-window))
 (in-package :config/keybindings)
 
 ; convenience macro for defining multiple keys
@@ -11,25 +12,33 @@
                   ,(second binding)))
              bindings)))
 
-; doesnt work idk why
 (define-command kill-buffer-and-window () ()
   (kill-buffer (current-buffer))
   (delete-window (current-window)))
 
 ; window navigation
 (define-keys *global-keymap*
+  ("C-q q" 'kill-buffer-and-window)
   ("C-w i" 'lem/list-buffers:list-buffers)
   ("C-w v" 'split-active-window-horizontally)
   ("C-w s" 'split-active-window-vertically)
   ("C-w b" 'lem/go-back:go-back-global)
   ("C-w n" 'next-buffer)
   ("C-w p" 'previous-buffer)
-  ("C-w k" 'kill-buffer-and-window) ; ??
   ("C-w d" 'lem/language-mode:find-definitions)
   ("C-h" 'window-move-left)
   ("C-j" 'window-move-down)
   ("C-k" 'window-move-up)
   ("C-l" 'window-move-right))
+
+; help keys
+(define-keys *global-keymap*
+  ("C-h b" 'describe-bindings)
+  ("C-h k" 'describe-key)
+  ("C-h a" 'lem-lisp-mode:lisp-apropos)
+  ("C-h c" 'apropos-command)
+  ("C-h p" 'lem-lisp-mode:lisp-apropos-package)
+  ("C-h f" 'lem-lisp-mode:lisp-describe-symbol))
 
 ; start repls
 (define-keys *global-keymap* 
