@@ -8,19 +8,18 @@
 
 (defparameter ollama/model "llama2")
 
-(make-buffer "*ollama*" :temporary t :read-only-p t)
+(defun chunga-read-line (stream)
+  (loop :with line := ""
+        :for c := (chunga:read-char* stream)
+        :while (not (eql c #\newline))
+        :do (setf line (concatenate 'string line (string c)))
+        :finally (return line)))
 
 (defun handle-stream (stream buffer)
-  (loop
-    (let ((line ""))
-      (loop :for c := (chunga:read-char* stream)
-            :while (not (eql #\newline c))
-            :do (setf line (concatenate 'string line (string c))))
-      (let* ((data (cl-json:decode-json-from-string line))
-             (done? (assoc-value data :done))
-             (token (assoc-value data :response)))
-        (insert-string (buffer-end-point buffer) token)
-        (when done? (return-from handle-stream))))))
+  (loop :for line := (chunga-read-line stream)
+        :for data := (cl-json:decode-json-from-string line)
+        :while (not (assoc-value data :done))
+        :do (insert-string (buffer-end-point buffer) (assoc-value data :response))))
 
 (defun ollama-request (prompt)
   (dex:post
