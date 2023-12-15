@@ -2,7 +2,7 @@
   (:use :cl :lem)
   (:import-from #:lem-vi-mode #:vi-mode)
   (:import-from #:lem-paredit-mode #:paredit-mode)
-  (:import-from #:lem-lisp-mode #:lisp-mode))
+  (:import-from #:lem-lisp-mode #:lisp-mode #:*lisp-repl-mode-hook*))
 (in-package :config/modes)
 
 ; enable vi mode
@@ -13,3 +13,7 @@
  (lambda (buffer)
    (when (eq (buffer-major-mode buffer) 'lisp-mode)
      (change-buffer-mode buffer 'paredit-mode t))))
+
+; enable paredit in lisp-repl-mode
+(add-hook *lisp-repl-mode-hook*
+          (lambda () (paredit-mode t)))
