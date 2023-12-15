@@ -6,7 +6,8 @@
 (defparameter ollama/endpoint
   "http://192.168.68.111:11434/api/generate")
 
-(defparameter ollama/model "llama2")
+(defparameter ollama/model 
+  "mistral")
 
 (defun chunga-read-line (stream)
   (loop :with line := ""
@@ -16,10 +17,13 @@
         :finally (return line)))
 
 (defun handle-stream (stream buffer)
-  (loop :for line := (chunga-read-line stream)
-        :for data := (cl-json:decode-json-from-string line)
-        :while (not (assoc-value data :done))
-        :do (insert-string (buffer-end-point buffer) (assoc-value data :response))))
+  (with-open-stream (buf-stream (make-buffer-output-stream (buffer-point buffer)))
+    (loop :for line := (chunga-read-line stream)
+          :for data := (cl-json:decode-json-from-string line)
+          :while (not (assoc-value data :done))
+          :do (format buf-stream (assoc-value data :response))
+          :do (message "")
+          :do (clear-message))))
 
 (defun ollama-request (prompt)
   (dex:post
@@ -36,9 +40,10 @@
 (define-command ollama-prompt (prompt) ("sPrompt: ")
   (let ((temp-buf (make-buffer "*ollama*" :temporary t)))
     (pop-to-buffer temp-buf)
-    (bt2:make-thread (lambda () (handle-stream (ollama-request prompt) temp-buf)))))
-
-
+    (bt2:make-thread 
+     (lambda () 
+       (ignore-errors
+         (handle-stream (ollama-request prompt) temp-buf))))))
 
 
 
