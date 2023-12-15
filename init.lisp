@@ -9,7 +9,7 @@
 ;; Load my init files.
 (let ((asdf:*central-registry* 
         (append
-         (list #P"~/.lem/"
+         (list #P"~/.config/lem/"
                #P"~/common-lisp/"
                (asdf:system-source-directory :lem)
                (asdf:system-relative-pathname :lem #P"contrib/trailing-spaces/"))

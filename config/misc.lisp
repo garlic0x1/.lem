@@ -1,12 +1,18 @@
 (defpackage #:config/misc 
-  (:use :cl :lem))
+  (:use :cl :lem :alexandria-2))
 (in-package :config/misc)
 
 ;; bigger font
-(font-size-decrease)
+(font-size-increase)
 
 ;; Disable Lem's auto recenter
 (setf *scroll-recenter-p* nil)
+
+(define-command open-init-file () ()
+  (line-up-first 
+   (lem-home)
+   (merge-pathnames "init.lisp")
+   find-file))
 
 ;; Allow to suspend Lem by C-z.
 ;; It doesn't work well on Mac with Apple Silicon.
