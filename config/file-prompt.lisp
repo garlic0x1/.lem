@@ -22,11 +22,25 @@
         (concatenate 'string 
                      (or replace marker)
                      (car (last split))))))
- 
+
+(defparameter special-paths
+  '(("//" . "/")
+    ("~/" . "~/")
+    ("~l/" . "~/workspace/quicklisp/local-projects/")
+    ("~c/" . "~/workspace/c/")
+    ))
+
 (defun normalize-path-input (path)
-  (let* ((rooted (normalize-path-marker path "//" "/"))
-         (homed (normalize-path-marker rooted "~/")))
-    homed))
+  (let ((result path))
+    (loop :for pair :in special-paths
+          :do (setf result (normalize-path-marker result (car pair) (cdr pair)))
+          )
+    result))
+ 
+;; (defun normalize-path-input (path)
+;;   (let* ((rooted (normalize-path-marker path "//" "/"))
+;;          (homed (normalize-path-marker rooted "~/")))
+;;     homed))
 
 (defvar *pfc-function-modified?* nil)
 (defun wrap-prompt-file-completion (fn)
