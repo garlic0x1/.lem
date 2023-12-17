@@ -29,3 +29,4 @@
     (sb-posix:kill (sb-posix:getpid) sb-unix:sigtstp))
 
   (define-key *global-keymap* "C-z" 'suspend-editor))
+

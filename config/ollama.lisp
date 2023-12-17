@@ -1,6 +1,6 @@
 (defpackage #:config/ollama 
   (:use :cl :lem :alexandria)
-  )
+  (:export #:ollama-prompt))
 (in-package :config/ollama)
 
 (defparameter ollama/endpoint
@@ -10,20 +10,20 @@
   "mistral")
 
 (defun chunga-read-line (stream)
+  "chunga:read-line* doesnt work, so use this."
   (loop :with line := ""
         :for c := (chunga:read-char* stream)
         :while (not (eql c #\newline))
         :do (setf line (concatenate 'string line (string c)))
         :finally (return line)))
 
-(defun handle-stream (stream buffer)
+(defun handle-stream (resp buffer)
   (with-open-stream (buf-stream (make-buffer-output-stream (buffer-point buffer)))
-    (loop :for line := (chunga-read-line stream)
+    (loop :for line := (chunga-read-line resp)
           :for data := (cl-json:decode-json-from-string line)
           :while (not (assoc-value data :done))
           :do (format buf-stream (assoc-value data :response))
-          :do (message "")
-          :do (clear-message))))
+          :do (redraw-display))))
 
 (defun ollama-request (prompt)
   (dex:post
@@ -45,6 +45,6 @@
        (ignore-errors
          (handle-stream (ollama-request prompt) temp-buf))))))
 
-
-
+(define-command ollama-describe-buffer () () 
+  (ollama-prompt (buffer-text (current-buffer))))
 
