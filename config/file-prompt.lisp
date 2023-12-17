@@ -1,6 +1,6 @@
 (defpackage #:config/file-prompt 
   (:use :cl :lem :alexandria-2)
-  )
+  (:import-from #:lem-core #:*prompt-file-completion-function*))
 (in-package :config/file-prompt)
 
 (define-command fermin/up-directory () ()
@@ -27,32 +27,26 @@
   '(("//" . "/")
     ("~/" . "~/")
     ("~l/" . "~/workspace/quicklisp/local-projects/")
-    ("~c/" . "~/workspace/c/")
-    ))
+    ("~c/" . "~/workspace/c/")))
 
 (defun normalize-path-input (path)
   (let ((result path))
     (loop :for pair :in special-paths
-          :do (setf result (normalize-path-marker result (car pair) (cdr pair)))
-          )
+          :do (setf result (normalize-path-marker 
+                            result 
+                            (car pair) 
+                            (cdr pair))))
     result))
  
-;; (defun normalize-path-input (path)
-;;   (let* ((rooted (normalize-path-marker path "//" "/"))
-;;          (homed (normalize-path-marker rooted "~/")))
-;;     homed))
-
-(defvar *pfc-function-modified?* nil)
 (defun wrap-prompt-file-completion (fn)
-  (prog1
-      (if *pfc-function-modified?*
-          fn 
-          (lambda (string directory &key directory-only)
-            (lem/prompt-window::replace-prompt-input (normalize-path-input string))
-            (funcall fn string directory :directory-only directory-only)))
-    (setf *pfc-function-modified?* t)))
+  "Add special paths to completion lambda."
+  (lambda (string directory &key directory-only)
+    (lem/prompt-window::replace-prompt-input (normalize-path-input string))
+    (funcall fn string directory :directory-only directory-only)))
 
-(setf lem-core::*prompt-file-completion-function*
-      (wrap-prompt-file-completion 
-       lem-core::*prompt-file-completion-function*
-       ))
+;; wrap once, this is just a bit of protection from myself
+(defvar *pfcf-modified?* nil)
+(unless *pfcf-modified?*
+  (setf *pfcf-modified?* t)
+  (setf *prompt-file-completion-function*
+        (wrap-prompt-file-completion *prompt-file-completion-function*)))
