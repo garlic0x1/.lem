@@ -1,24 +1,16 @@
 (defpackage #:config/misc 
-  (:use :cl :lem :alexandria-2)
-  (:local-nicknames (:display :lem-sdl2/display)
-                    (:font :lem-sdl2/font)))
+  (:use :cl :lem :alexandria-2))
 (in-package :config/misc)
 
-(defun set-font-size (size)
-  (display:with-display (display)
-    (display:with-renderer (display)
-      (let ((font-config (display:display-font-config display)))
-        (display:change-font 
-         display 
-         (font:change-size font-config size))))))
-
-(set-font-size 18)
-
-;; Disable Lem's auto recenter
+(lem-if:set-font-size (implementation) 18)
 (setf *scroll-recenter-p* nil)
 
 (define-command open-config () ()
   (line-up-first (lem-home) find-file))
+
+(define-command kill-buffer-and-window () ()
+  (kill-buffer (current-buffer))
+  (delete-window (current-window)))
 
 ;; Allow to suspend Lem by C-z.
 ;; It doesn't work well on Mac with Apple Silicon.
