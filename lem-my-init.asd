@@ -5,8 +5,8 @@
   :serial t
   :components
   ((:module "config"
-    :components ((:file "keybindings")
-                 (:file "modes")
+    :components ((:file "modes")
                  (:file "ollama")
                  (:file "file-prompt")
-                 (:file "misc")))))
+                 (:file "misc")
+                 (:file "keybindings")))))

@@ -1,6 +1,7 @@
 (defpackage #:config/file-prompt 
   (:use :cl :lem :alexandria-2)
-  (:import-from #:lem-core #:*prompt-file-completion-function*))
+  (:import-from #:lem-core #:*prompt-file-completion-function*)
+  (:export #:fermin/up-directory))
 (in-package :config/file-prompt)
 
 (define-command fermin/up-directory () ()

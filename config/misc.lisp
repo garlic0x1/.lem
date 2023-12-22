@@ -1,5 +1,6 @@
 (defpackage #:config/misc 
-  (:use :cl :lem :alexandria-2))
+  (:use :cl :lem :alexandria-2)
+  (:export #:open-config #:kill-buffer-and-window))
 (in-package :config/misc)
 
 (lem-if:set-font-size (implementation) 18)

@@ -5,7 +5,7 @@
 
 (define-keys *global-keymap*
   ;; navigation
-  ("C-q q" 'kill-buffer-and-window)
+  ("C-q q" 'config/misc:kill-buffer-and-window)
   ("C-w i" 'lem/list-buffers:list-buffers)
   ("C-w v" 'split-active-window-horizontally)
   ("C-w s" 'split-active-window-vertically)
@@ -27,15 +27,18 @@
   ("C-a f" 'lem-lisp-mode:lisp-describe-symbol))
 
 ;; file prompt
-(define-key lem/prompt-window::*prompt-mode-keymap* "C-Backspace" 'fermin/up-directory)
+(define-key lem/prompt-window::*prompt-mode-keymap* 
+  "C-Backspace" 'config/file-prompt:fermin/up-directory)
+
+;; structural editing
+(define-keys lem-paredit-mode:*paredit-mode-keymap*
+  (">" 'lem-paredit-mode:paredit-slurp)
+  ("<" 'lem-paredit-mode:paredit-barf)
+  ("C-k" nil))
 
 ; start repls
 (define-keys *global-keymap* 
-  ("M-l l" 'lem-lisp-mode/internal:start-lisp-repl))
-
-;; structural editing
-(define-keys lem-vi-mode:*normal-keymap*
-  (">" 'lem-paredit-mode:paredit-slurp)
-  ("<" 'lem-paredit-mode:paredit-barf))
+  ("M-l l" 'lem-lisp-mode/internal:start-lisp-repl)
+  ("M-l e" 'lem-elixir-mode.run-elixir:run-elixir))
 
 
