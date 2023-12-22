@@ -21,20 +21,16 @@
                      (or replace marker)
                      (car (last split))))))
 
-(defparameter special-paths
+(defparameter *special-paths*
   '(("//" . "/")
     ("~/" . "~/")
     ("~l/" . "~/workspace/quicklisp/local-projects/")
     ("~c/" . "~/workspace/c/")))
 
 (defun normalize-path-input (path)
-  (let ((result path))
-    (loop :for pair :in special-paths
-          :do (setf result (normalize-path-marker 
-                            result 
-                            (car pair) 
-                            (cdr pair))))
-    result))
+  (reduce (lambda (ag pair) (normalize-path-marker ag (car pair) (cdr pair))) 
+          *special-paths*
+          :initial-value path))
  
 (defun wrap-prompt-file-completion (fn)
   "Add special paths to completion lambda."
