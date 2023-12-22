@@ -12,7 +12,7 @@
          (let ((trimmed (str:trim-right wstring :char-bag '(#\/ ))))
            (subseq trimmed 0 (1+ (position #\/ trimmed :from-end t :test #'char-equal)))))))))
 
-(define-key lem/prompt-window::*prompt-mode-keymap* "Backspace" 'fermin/up-directory)
+(define-key lem/prompt-window::*prompt-mode-keymap* "C-Backspace" 'fermin/up-directory)
 
 ;; garlic path normalization
 (defun normalize-path-marker (path marker &optional replace)
