@@ -32,8 +32,8 @@
 
 ;; structural editing
 (define-keys lem-paredit-mode:*paredit-mode-keymap*
-  (">" 'lem-paredit-mode:paredit-slurp)
-  ("<" 'lem-paredit-mode:paredit-barf)
+  ("C-." 'lem-paredit-mode:paredit-slurp)
+  ("C-," 'lem-paredit-mode:paredit-barf)
   ("C-k" nil))
 
 ; start repls

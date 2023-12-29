@@ -6,6 +6,12 @@
 (lem-if:set-font-size (implementation) 18)
 (setf *scroll-recenter-p* nil)
 
+(setf lem-ollama:*host* "192.168.68.110:11434")
+
+(register-icon "right-pointing-triangle" #x003E)
+(register-icon "down-pointing-triangle"  #x0076)
+(register-icon "lock"                    #x004C)
+
 (define-command open-config () ()
   (line-up-first (lem-home) find-file))
 

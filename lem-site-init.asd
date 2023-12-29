@@ -5,7 +5,6 @@
   :components
   ((:module "config" 
     :components ((:file "modes") 
-                 (:file "ollama") 
                  (:file "file-prompt") 
                  (:file "misc")
                  (:file "keybindings")))))

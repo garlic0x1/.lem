@@ -10,9 +10,7 @@
 (let ((asdf:*central-registry* 
         (append
          (list #P"~/.config/lem/"
-               #P"~/common-lisp/"
-               #P"~/workspace/quicklisp/local-projects/"
                (asdf:system-source-directory :lem)
-               (asdf:system-relative-pathname :lem #P"contrib/trailing-spaces/"))
+               (asdf:system-relative-pathname :lem #P"contrib/ollama/"))
          asdf:*central-registry*)))
   (ql:quickload :lem-site-init))

@@ -1,17 +1,18 @@
 (defpackage #:config/file-prompt 
   (:use :cl :lem :alexandria-2)
   (:import-from #:lem-core #:*prompt-file-completion-function*)
+  (:local-nicknames (#:prompt #:lem/prompt-window))
   (:export #:fermin/up-directory))
 (in-package :config/file-prompt)
 
 (define-command fermin/up-directory () ()
-  (let* ((pwindow (lem/prompt-window::current-prompt-window))
-         (wstring (and pwindow (lem/prompt-window::get-input-string))))
-    (when wstring
-      (lem/prompt-window::replace-prompt-input
-       (ignore-errors
-         (let ((trimmed (str:trim-right wstring :char-bag '(#\/ ))))
-           (subseq trimmed 0 (1+ (position #\/ trimmed :from-end t :test #'char-equal)))))))))
+  (when-let* ((pwindow (prompt::current-prompt-window))
+              (wstring (and pwindow (prompt::get-input-string))))
+    (prompt::replace-prompt-input
+     (ignore-errors
+       (let* ((trimmed (str:trim-right wstring :char-bag '(#\/ )))
+              (endp (1+ (position #\/ trimmed :from-end t :test #'char-equal))))
+         (subseq trimmed 0 endp))))))
 
 ;; garlic path normalization
 (defun normalize-path-marker (path marker &optional replace)
