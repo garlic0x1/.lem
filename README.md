@@ -47,6 +47,12 @@ Allow C-z to suspend in ncurses.
 M-x open-config
 M-x kill-buffer-and-window
 
+## Troubleshooting
+
+If you get issues with SDL2 throwing a null pointer issue then you must debug the way SDL2_ttf is built.
+    
+On Arch, install this package to fix the issue: [garlic0x1/sdl2_ttf](https://github.com/garlic0x1/sdl2_ttf)
+
 ## See Also
 
 * [fukamachi/.lem](https://github.com/fukamachi/.lem)

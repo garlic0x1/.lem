@@ -26,8 +26,8 @@
 (defparameter *special-paths*
   '(("//" . "/")
     ("~/" . "~/")
-    ("~l/" . "~/workspace/quicklisp/local-projects/")
-    ("~c/" . "~/workspace/c/")))
+    ("~l/" . "~/common-lisp/") 
+    ("~c/" . "~/c/")))
 
 (defun normalize-path-input (path)
   (reduce (lambda (ag pair) (normalize-path-marker ag (car pair) (cdr pair))) 
