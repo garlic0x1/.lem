@@ -10,7 +10,6 @@
 
 (register-icon "right-pointing-triangle" #x003E)
 (register-icon "down-pointing-triangle"  #x0076)
-;; (register-icon "lock"                    #x004C)
 
 (define-command open-config () ()
   (line-up-first (lem-home) find-file))

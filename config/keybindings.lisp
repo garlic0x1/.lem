@@ -24,7 +24,11 @@
   ("C-a a" 'lem-lisp-mode:lisp-apropos)
   ("C-a c" 'apropos-command)
   ("C-a p" 'lem-lisp-mode:lisp-apropos-package)
-  ("C-a f" 'lem-lisp-mode:lisp-describe-symbol))
+  ("C-a f" 'lem-lisp-mode:lisp-describe-symbol)
+  ("M-l l" 'lem-lisp-mode/internal:start-lisp-repl)
+  ;; start repls
+  ("M-l e" 'lem-elixir-mode.run-elixir:run-elixir)
+  )
 
 ;; file prompt
 (define-key lem/prompt-window::*prompt-mode-keymap* 
@@ -36,9 +40,8 @@
   ("C-," 'lem-paredit-mode:paredit-barf)
   ("C-k" nil))
 
-; start repls
-(define-keys *global-keymap* 
-  ("M-l l" 'lem-lisp-mode/internal:start-lisp-repl)
-  ("M-l e" 'lem-elixir-mode.run-elixir:run-elixir))
+;; (define-command start-slime () ()
+  ;; (slime))
+;; define-key *global-keymap* "M-l s" 'start-slime)
 
 

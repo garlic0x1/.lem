@@ -30,6 +30,8 @@ This file modifies the behavior of the find-file prompt (C-x C-f).
 
 C-Backspace goes back a whole path node.
 
+#### Obselete due to being merged into main
+
 Path normalization when you press tab:
 
 * ~/ -> ~/

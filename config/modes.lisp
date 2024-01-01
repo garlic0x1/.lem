@@ -16,4 +16,4 @@
 
 ; enable paredit in lisp-repl-mode
 (add-hook *lisp-repl-mode-hook*
-          (lambda () (paredit-mode t)))
+ (lambda () (paredit-mode t)))
