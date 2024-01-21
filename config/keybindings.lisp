@@ -25,14 +25,18 @@
   ("C-a c" 'apropos-command)
   ("C-a p" 'lem-lisp-mode:lisp-apropos-package)
   ("C-a f" 'lem-lisp-mode:lisp-describe-symbol)
-  ("M-l l" 'lem-lisp-mode/internal:start-lisp-repl)
   ;; start repls
-  ("M-l e" 'lem-elixir-mode.run-elixir:run-elixir)
-  )
+  ("M-l l" 'lem-lisp-mode/internal:start-lisp-repl)
+  ("M-l s" 'slime)
+  ("M-l e" 'lem-elixir-mode.run-elixir:run-elixir))
 
 ;; file prompt
 (define-key lem/prompt-window::*prompt-mode-keymap* 
   "C-Backspace" 'config/file-prompt:fermin/up-directory)
+
+;; allow newlines in repl
+(define-keys lem-vi-mode:*insert-keymap*
+  ("Shift-Return" 'config/misc:insert-newline))
 
 ;; structural editing
 (define-keys lem-paredit-mode:*paredit-mode-keymap*
