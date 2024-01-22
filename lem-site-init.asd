@@ -4,7 +4,8 @@
   (:lem-ollama)
   :components
   ((:module "config" 
-    :components ((:file "modes") 
+    :components ((:file "format")
+                 (:file "modes")
                  (:file "file-prompt") 
                  (:file "misc")
                  (:file "keybindings")))))
