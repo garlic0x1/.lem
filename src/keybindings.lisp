@@ -3,6 +3,8 @@
 (in-package :config/keybindings)
 
 (define-keys *global-keymap*
+  ;; fullscreen
+  ("F11" 'toggle-frame-fullscreen)
   ;; navigation
   ("C-q q" 'config/misc:kill-buffer-and-window)
   ("C-w i" 'lem/list-buffers:list-buffers)
@@ -32,9 +34,9 @@
 
 ;; structural editing
 (define-keys lem-paredit-mode:*paredit-mode-keymap*
-  ("Backspace" 'config/paredit:garlic/paredit-backward-delete)
+  ("Backspace" 'config/paredit:paredit-backward-delete)
   ("C-Return" 'config/paredit:paredit-insert-newline)
-  ("C-d" 'config/paredit:garlic/paredit-kill)
+  ("C-d" 'config/paredit:paredit-kill)
   ("C-." 'lem-paredit-mode:paredit-slurp)
   ("C-," 'lem-paredit-mode:paredit-barf)
   ("C-k" nil))

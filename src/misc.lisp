@@ -3,17 +3,20 @@
   (:export #:open-config #:kill-buffer-and-window #:insert-newline))
 (in-package :config/misc)
 
+(lem-if:set-font-size (implementation) 18)
+
+(ignore-errors
+  (setf *scroll-recenter-p* nil
+        lem-shell-mode:*default-shell-command* "/usr/bin/sh"
+        lem-ollama:*host* "192.168.68.110:11434"
+        lem:*auto-format* t))
+
+(ignore-errors
+  (register-icon "right-pointing-triangle" #x003E)
+  (register-icon "down-pointing-triangle"  #x0076))
+
 (define-command open-config () ()
   (line-up-first (lem-home) find-file))
-
-(lem-if:set-font-size (implementation) 18)
-(setf *scroll-recenter-p* nil)
-(setf lem-shell-mode:*default-shell-command* "/usr/bin/sh")
-(setf lem-ollama:*host* "192.168.68.110:11434")
-(setf lem:*auto-format* t)
-
-(register-icon "right-pointing-triangle" #x003E)
-(register-icon "down-pointing-triangle"  #x0076)
 
 (define-command insert-newline () ()
   (insert-string (current-point) (format nil "~%")))

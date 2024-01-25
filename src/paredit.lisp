@@ -2,19 +2,14 @@
   (:use :cl :lem)
   (:export #:paredit-insert-newline
            #:format-lisp-buffer
-           #:garlic/paredit-kill
-           #:garlic/paredit-backward-delete))
+           #:paredit-kill
+           #:paredit-backward-delete))
 (in-package :config/paredit)
 
 (defun format-lisp-buffer (&optional (buffer (current-buffer)))
   "Convenience function, indents and deletes trailing whitespace."
   (indent-buffer buffer)
   (delete-trailing-whitespace buffer))
-
-(define-command paredit-insert-newline () ()
-  "Insert newline, and correct indentation."
-  (insert-character (current-point) #\Newline)
-  (format-lisp-buffer))
 
 (defun whitespace-prefix-p (point)
   "Test if the point is prefixed only by whitespace in a line."
@@ -40,7 +35,12 @@
       (insert-character new-p #\ )))
   (indent-current-buffer))
 
-(define-command garlic/paredit-backward-delete (&optional (n 1)) ("p")
+(define-command paredit-insert-newline () ()
+  "Insert newline, and correct indentation."
+  (insert-character (current-point) #\Newline)
+  (format-lisp-buffer))
+
+(define-command paredit-backward-delete (&optional (n 1)) ("p")
   "Extension of paredit-backward-delete to add paredit-backline."
   (when (< 0 n)
     (let ((p (current-point)))
@@ -48,7 +48,9 @@
           (paredit-backline p)
           (lem-paredit-mode:paredit-backward-delete)))))
 
-(define-command garlic/paredit-kill () ()
+(define-command paredit-kill () ()
   "Wrapper around paredit-kill, formats buffer after."
   (lem-paredit-mode:paredit-kill)
   (format-lisp-buffer))
+
+(register-formatter lem-lisp-mode:lisp-mode 'format-lisp-buffer)
