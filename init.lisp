@@ -7,10 +7,12 @@
 (asdf:clear-source-registry)
 
 ;; Load my init files.
-(let ((asdf:*central-registry* 
+(let ((asdf:*central-registry*
         (append
          (list #P"~/.config/lem/"
                (asdf:system-source-directory :lem)
                (asdf:system-relative-pathname :lem #P"contrib/ollama/"))
          asdf:*central-registry*)))
   (ql:quickload :lem-site-init))
+
+(lem-lisp-mode:start-lisp-repl t)

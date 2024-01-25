@@ -3,9 +3,9 @@
   :depends-on
   (:lem-ollama)
   :components
-  ((:module "config" 
-    :components ((:file "format")
+  ((:module "config"
+    :components ((:file "paredit")
                  (:file "modes")
-                 (:file "file-prompt") 
+                 (:file "file-prompt")
                  (:file "misc")
                  (:file "keybindings")))))

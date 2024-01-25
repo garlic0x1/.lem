@@ -18,21 +18,14 @@
   ("C-j" 'window-move-down)
   ("C-k" 'window-move-up)
   ("C-l" 'window-move-right)
-  ;; help keys
-  ("C-a b" 'describe-bindings)
-  ("C-a k" 'describe-key)
-  ("C-a a" 'lem-lisp-mode:lisp-apropos)
-  ("C-a c" 'apropos-command)
-  ("C-a p" 'lem-lisp-mode:lisp-apropos-package)
-  ("C-a f" 'lem-lisp-mode:lisp-describe-symbol)
   ;; start repls
   ("M-l l" 'lem-lisp-mode/internal:start-lisp-repl)
   ("M-l s" 'slime)
   ("M-l e" 'lem-elixir-mode.run-elixir:run-elixir))
 
 ;; file prompt
-(define-key lem/prompt-window::*prompt-mode-keymap* 
-  "C-Backspace" 'config/file-prompt:fermin/up-directory)
+(define-keys lem/prompt-window::*prompt-mode-keymap*
+  ("C-Backspace" 'config/file-prompt:fermin/up-directory))
 
 ;; allow newlines in repl
 (define-keys lem-vi-mode:*insert-keymap*
@@ -40,12 +33,9 @@
 
 ;; structural editing
 (define-keys lem-paredit-mode:*paredit-mode-keymap*
+  ("Backspace" 'config/paredit:garlic/paredit-backward-delete)
+  ("C-Return" 'config/paredit:paredit-insert-newline)
+  ("C-d" 'config/paredit:garlic/paredit-kill)
   ("C-." 'lem-paredit-mode:paredit-slurp)
   ("C-," 'lem-paredit-mode:paredit-barf)
   ("C-k" nil))
-
-;; (define-command start-slime () ()
-  ;; (slime))
-;; define-key *global-keymap* "M-l s" 'start-slime)
-
-
