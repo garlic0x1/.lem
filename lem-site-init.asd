@@ -3,7 +3,7 @@
   :depends-on
   (:lem-ollama)
   :components
-  ((:module "config"
+  ((:module "src"
     :components ((:file "paredit")
                  (:file "modes")
                  (:file "file-prompt")

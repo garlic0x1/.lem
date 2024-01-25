@@ -2,3 +2,4 @@ history/
 config.lisp
 .log
 logs/
+packages/
