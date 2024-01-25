@@ -11,15 +11,14 @@
         lem-ollama:*host* "192.168.68.110:11434"
         lem:*auto-format* t))
 
-(ignore-errors
-  (register-icon "right-pointing-triangle" #x003E)
-  (register-icon "down-pointing-triangle"  #x0076))
+(register-icon "right-pointing-triangle" #x003E)
+(register-icon "down-pointing-triangle"  #x0076)
 
 (define-command open-config () ()
   (line-up-first (lem-home) find-file))
 
 (define-command insert-newline () ()
-  (insert-string (current-point) (format nil "~%")))
+  (insert-character (current-point) #\Newline))
 
 (define-command kill-buffer-and-window () ()
   (kill-buffer (current-buffer))
