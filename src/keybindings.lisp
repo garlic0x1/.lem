@@ -1,6 +1,5 @@
 (defpackage #:config/keybindings
-  (:use :cl :lem)
-  (:export #:kill-buffer-and-window))
+  (:use :cl :lem))
 (in-package :config/keybindings)
 
 (define-keys *global-keymap*

@@ -23,7 +23,7 @@
       (not (find-if-not #'syntax-space-char-p prefix)))))
 
 (defun forward-skip-whitespace (point)
-  "Move point to the next character that is not whitespace."
+  "Move point to the next character on the line that is not whitespace."
   (loop :for p := (character-at point)
         :while (syntax-space-char-p p)
         :while (not (eq #\Newline p))
