@@ -30,18 +30,12 @@
            (eq #\) next)
            (eq #\( prev))))
 
-(defun character-before (point)
-  "Get the character before the point."
-  (character-offset point -1)
-  (prog1 (character-at point)
-    (character-offset point 1)))
-
 (defun paredit-backline (point)
   "Go back a line, like lispy-mode."
   (forward-skip-whitespace point)
   (delete-trailing-whitespace)
   (delete-previous-char (1+ (point-column point)))
-  (when (space-between-p (character-before point) (character-at point))
+  (when (space-between-p (character-at point -1) (character-at point))
     (insert-character point #\ ))
   (indent-current-buffer))
 

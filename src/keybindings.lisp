@@ -21,7 +21,7 @@
   ("C-l" 'window-move-right)
   ;; start repls
   ("M-l l" 'lem-lisp-mode/internal:start-lisp-repl)
-  ("M-l s" 'slime)
+  ("M-l s" 'lem-lisp-mode:slime)
   ("M-l e" 'lem-elixir-mode.run-elixir:run-elixir))
 
 ;; file prompt

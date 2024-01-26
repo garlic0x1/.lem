@@ -14,6 +14,3 @@
                (asdf:system-relative-pathname :lem #P"contrib/ollama/"))
          asdf:*central-registry*)))
   (ql:quickload :lem-site-init))
-
-;; Open to a Lem REPL
-(lem-lisp-mode:start-lisp-repl t)

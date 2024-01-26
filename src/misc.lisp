@@ -3,6 +3,9 @@
   (:export #:open-config #:kill-buffer-and-window #:insert-newline))
 (in-package :config/misc)
 
+;; Open to a Lem REPL
+(lem-lisp-mode:start-lisp-repl t)
+
 (lem-if:set-font-size (implementation) 18)
 
 (ignore-errors
