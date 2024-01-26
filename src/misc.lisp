@@ -6,6 +6,7 @@
 (lem-if:set-font-size (implementation) 18)
 
 (ignore-errors
+  "No error if these change names."
   (setf *scroll-recenter-p* nil
         lem-shell-mode:*default-shell-command* "/usr/bin/sh"
         lem-ollama:*host* "192.168.68.110:11434"

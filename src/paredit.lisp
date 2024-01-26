@@ -24,15 +24,25 @@
         :while (not (eq #\Newline p))
         :do (character-offset point 1)))
 
+(defun space-between-p (prev next)
+  "True if there should be a space between characters prev and next."
+  (not (or (syntax-space-char-p next)
+           (eq #\) next)
+           (eq #\( prev))))
+
+(defun character-before (point)
+  "Get the character before the point."
+  (character-offset point -1)
+  (prog1 (character-at point)
+    (character-offset point 1)))
+
 (defun paredit-backline (point)
   "Go back a line, like lispy-mode."
   (forward-skip-whitespace point)
   (delete-trailing-whitespace)
   (delete-previous-char (1+ (point-column point)))
-  (let* ((new-p (current-point))
-         (c (character-at new-p)))
-    (unless (or (syntax-space-char-p c) (eq #\) c))
-      (insert-character new-p #\ )))
+  (when (space-between-p (character-before point) (character-at point))
+    (insert-character point #\ ))
   (indent-current-buffer))
 
 (define-command paredit-insert-newline () ()

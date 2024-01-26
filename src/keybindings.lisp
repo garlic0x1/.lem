@@ -40,3 +40,6 @@
   ("C-." 'lem-paredit-mode:paredit-slurp)
   ("C-," 'lem-paredit-mode:paredit-barf)
   ("C-k" nil))
+
+(define-keys lem-lisp-mode:*lisp-mode-keymap*
+  ("Return" 'config/paredit:paredit-insert-newline))
