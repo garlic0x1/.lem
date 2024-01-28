@@ -6,6 +6,7 @@
   ((:module "src"
     :components ((:file "paredit")
                  (:file "modes")
+                 (:file "lsp")
                  (:file "file-prompt")
                  (:file "misc")
                  (:file "keybindings")))))

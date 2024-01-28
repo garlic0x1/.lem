@@ -1,0 +1,6 @@
+(asdf:defsystem "<%= (pathname-name (lem:buffer-filename (@ buffer))) %>"
+  :author ""
+  :license "MIT"
+  :depends-on ()
+  :components ((:module "src"
+                :components ((:file "core")))))
