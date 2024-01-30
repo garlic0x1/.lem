@@ -18,3 +18,18 @@
     (:pattern ".*Makefile"
      :name "Lisp Makefile"
      :file (merge-pathnames "templates/Makefile.lisp.clt" (lem-home)))))
+
+(ignore-errors
+  (register-snippets
+    (:mode 'lem-lisp-mode:lisp-mode
+     :name "test"
+     :string "(message \"testing\")")
+    (:mode 'lem-lisp-mode:lisp-mode
+     :name "hi"
+     :string "(message \"hi\")")
+    (:mode 'lem-go-mode:go-mode
+     :name "loop"
+     :file (merge-pathnames "snippets/loop.go.clt" (lem-home)))
+    (:mode 'lem-go-mode:go-mode
+     :name "err"
+     :file (merge-pathnames "snippets/if-err.go.clt" (lem-home)))))

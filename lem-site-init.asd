@@ -10,4 +10,6 @@
                  (:file "lsp")
                  (:file "file-prompt")
                  (:file "misc")
-                 (:file "keybindings")))))
+                 (:file "places")
+                 (:file "keybindings")
+                 ))))

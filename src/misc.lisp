@@ -7,7 +7,6 @@
 ;; Open to a Lem REPL
 (lem-lisp-mode:start-lisp-repl t)
 
-;; big font for my blind ass
 (lem-if:set-font-size (implementation) 18)
 
 (ignore-errors

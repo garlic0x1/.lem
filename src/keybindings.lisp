@@ -2,9 +2,14 @@
   (:use :cl :lem))
 (in-package :config/keybindings)
 
+;; (ignore-errors
+;;   (define-keys *global-keymap*
+;;     ("C-l s" 'lem-template:insert-snippet)))
+
 (define-keys *global-keymap*
   ;; file prompt with structural backspace
   ("C-x C-f" 'config/file-prompt:garlic/find-file)
+  ("C-x C-d" 'config/places:recent-places)
   ;; fullscreen
   ("F11" 'toggle-frame-fullscreen)
   ;; navigation

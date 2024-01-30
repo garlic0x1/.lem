@@ -39,10 +39,15 @@
     (insert-character point #\ ))
   (indent-current-buffer))
 
+(defun point-at-end-p (point)
+  "Point is at the end of it's buffer."
+  (point= point (buffer-end-point (point-buffer point))))
+
 (define-command paredit-insert-newline () ()
   "Insert newline, and correct indentation."
   (insert-character (current-point) #\Newline)
-  (format-lisp-buffer))
+  (unless (point-at-end-p (current-point))
+    (format-lisp-buffer)))
 
 (define-command paredit-backward-delete (&optional (n 1)) ("p")
   "Extension of paredit-backward-delete to add paredit-backline."
