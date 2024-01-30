@@ -5,6 +5,7 @@
   :components
   ((:module "src"
     :components ((:file "paredit")
+                 (:file "templates")
                  (:file "modes")
                  (:file "lsp")
                  (:file "file-prompt")

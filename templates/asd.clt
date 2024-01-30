@@ -1,4 +1,4 @@
-(asdf:defsystem "<%= (pathname-name (lem:buffer-filename (@ buffer))) %>"
+(asdf:defsystem "<%= (pathname-name (@ path)) %>"
   :author ""
   :license "MIT"
   :depends-on ()

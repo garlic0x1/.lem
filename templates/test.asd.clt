@@ -1,0 +1,6 @@
+(asdf:defsystem "<%= (pathname-name (@ path)) %>"
+  :author ""
+  :license "MIT"
+  :depends-on (:fiveam)
+  :components ((:module "t"
+                :components ((:file "tests")))))

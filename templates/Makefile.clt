@@ -1,12 +1,5 @@
 ##
-# <%=
-    (alexandria-2:line-up-last
-      (@ buffer)
-      lem:buffer-filename
-      pathname-directory
-      last
-      car)
-  %>
+# <%= (car (last (pathname-directory (@ path)))) %>
 #
 # @file
 # @version 0.1
@@ -22,7 +15,7 @@ LDLIBS=
 CCC=$(CC) $(CFLAGS) $(LDLIBS)
 
 # Edit these:
-PROGNAME=~{project-name}
+PROGNAME=<%= (car (last (pathname-directory (@ path)))) %>
 INSTALLDIR=~/.local/bin
 
 # Do not edit these:
@@ -51,7 +44,7 @@ $(BIN): $(OBJS)
 	$(CCC) $(OBJS) -o $(BIN)
 
 # build objects from source
-$(OBJ)/%.o: $(SRC)/%.c
+$(OBJS): $(SRCS)
 	$(CCC) -c $< -o $@
 
 # build and run program

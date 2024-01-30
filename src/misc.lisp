@@ -1,12 +1,13 @@
 (defpackage #:config/misc
   (:use :cl :lem :alexandria-2)
-  (:import-from #:lem-template #:*auto-template* #:register-templates)
+  ;(:import-from #:lem-template #:*auto-template* #:register-templates)
   (:export #:open-config #:kill-buffer-and-window #:insert-newline))
 (in-package :config/misc)
 
 ;; Open to a Lem REPL
 (lem-lisp-mode:start-lisp-repl t)
 
+;; big font for my blind ass
 (lem-if:set-font-size (implementation) 18)
 
 (ignore-errors
@@ -15,13 +16,6 @@
         lem-shell-mode:*default-shell-command* "/usr/bin/sh"
         lem-ollama:*host* "192.168.68.110:11434"
         lem:*auto-format* t))
-
-(ignore-errors
-  (register-templates
-    (:pattern ".*\.asd"  :file (merge-pathnames "templates/asd.clt" (lem-home)))
-    (:pattern ".*\.lisp" :file (merge-pathnames "templates/lisp.clt" (lem-home)))
-    (:pattern ".*\.go"   :file (merge-pathnames "templates/go.clt" (lem-home)))
-    (:pattern "Makefile" :file (merge-pathnames "templates/Makefile.clt" (lem-home)))))
 
 (register-icon "right-pointing-triangle" #x003E)
 (register-icon "down-pointing-triangle"  #x0076)
@@ -38,9 +32,6 @@
 
 (define-command toggle-auto-format () ()
   (setf *auto-format* (not *auto-format*)))
-
-;; (define-command toggle-auto-template () ()
-;;   (setf *auto-template* (not *auto-template*)))
 
 (add-hook (variable-value 'before-save-hook :global t)
           #'delete-trailing-whitespace)
