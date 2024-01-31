@@ -1,9 +1,9 @@
 (defpackage #:config/templates
-  (:use :cl :lem :lem-template))
+  (:use :cl :lem))
 (in-package :config/templates)
 
 (ignore-errors
-  (register-templates
+  (lem-template:register-templates
     (:pattern ".*\.asd"
      :name "Basic ASD"
      :file (merge-pathnames "templates/asd.clt" (lem-home)))
@@ -20,7 +20,7 @@
      :file (merge-pathnames "templates/Makefile.lisp.clt" (lem-home)))))
 
 (ignore-errors
-  (register-snippets
+  (lem-template:register-snippets
     (:mode 'lem-lisp-mode:lisp-mode
      :name "test"
      :string "(message \"testing\")")

@@ -7,7 +7,8 @@
 ;; Open to a Lem REPL
 (lem-lisp-mode:start-lisp-repl t)
 
-(lem-if:set-font-size (implementation) 18)
+(ignore-errors
+  (lem-if:set-font-size (implementation) 18))
 
 (ignore-errors
   "No error if these change names."
@@ -16,8 +17,9 @@
         lem-ollama:*host* "192.168.68.110:11434"
         lem:*auto-format* t))
 
-(register-icon "right-pointing-triangle" #x003E)
-(register-icon "down-pointing-triangle"  #x0076)
+(ignore-errors
+  (register-icon "right-pointing-triangle" #x003E)
+  (register-icon "down-pointing-triangle"  #x0076))
 
 (define-command open-config () ()
   (line-up-first (lem-home) find-file))
