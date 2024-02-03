@@ -4,13 +4,13 @@
 
 (ignore-errors
   (lem-template:register-templates
-    (:pattern ".*\.asd"
+    (:pattern ".*\\.asd"
      :name "Basic ASD"
      :file (merge-pathnames "templates/asd.clt" (lem-home)))
-    (:pattern ".*\.asd"
+    (:pattern ".*\\.asd"
      :name "Test ASD"
      :file (merge-pathnames "templates/test.asd.clt" (lem-home)))
-    (:pattern ".*\.lisp"
+    (:pattern ".*\\.lisp"
      :file (merge-pathnames "templates/lisp.clt" (lem-home)))
     (:pattern ".*Makefile"
      :name "C Makefile"

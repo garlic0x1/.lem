@@ -34,6 +34,12 @@
 (define-command toggle-auto-format () ()
   (setf *auto-format* (not *auto-format*)))
 
+(define-command delete-current-file () ()
+  (let ((file (buffer-filename (current-buffer))))
+    (when (prompt-for-y-or-n-p (format nil "Delete ~a" file))
+      (uiop:delete-file-if-exists file)
+      (kill-buffer (current-buffer)))))
+
 (add-hook (variable-value 'before-save-hook :global t)
           #'delete-trailing-whitespace)
 

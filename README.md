@@ -6,6 +6,8 @@
 $ git clone https://github.com/garlic0x1/.lem ~/.config/lem
 ```
 
+This might not work on master branch, I keep stuff here for my dev branch of Lem.
+
 ## Details
 
 Loads contrib/ollama package to talk to LLM servers.
