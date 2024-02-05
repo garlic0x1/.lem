@@ -40,6 +40,16 @@
       (uiop:delete-file-if-exists file)
       (kill-buffer (current-buffer)))))
 
+(define-command lisp-macroexpand-in-place () ()
+  (lem-lisp-mode:check-connection)
+  (lem-lisp-mode:lisp-eval-async
+   `(micros:swank-macroexpand-1
+     (lem-lisp-mode/internal::form-string-at-point))
+   (lambda (string)
+     (kill-sexp)
+     (insert-string (current-point) string)
+     (indent-buffer (current-buffer)))))
+
 (add-hook (variable-value 'before-save-hook :global t)
           #'delete-trailing-whitespace)
 
