@@ -10,10 +10,10 @@
 
 ; enable paredit in lisp-mode
 (add-hook *find-file-hook*
- (lambda (buffer)
-   (when (eq (buffer-major-mode buffer) 'lisp-mode)
-     (change-buffer-mode buffer 'paredit-mode t))))
+          (lambda (buffer)
+            (when (eq (buffer-major-mode buffer) 'lisp-mode)
+              (change-buffer-mode buffer 'paredit-mode t))))
 
 ; enable paredit in lisp-repl-mode
 (add-hook *lisp-repl-mode-hook*
- (lambda () (paredit-mode t)))
+          (lambda () (paredit-mode t)))

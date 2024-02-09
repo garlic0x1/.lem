@@ -7,6 +7,8 @@
 ;; Open to a Lem REPL
 (lem-lisp-mode:start-lisp-repl t)
 
+(remove-hook *after-init-hook* 'lem/frame-multiplexer::enable-frame-multiplexer)
+
 (ignore-errors
   (lem-if:set-font-size (implementation) 18))
 
