@@ -6,8 +6,6 @@
 $ git clone https://github.com/garlic0x1/.lem ~/.config/lem
 ```
 
-This might not work on master branch, I keep stuff here for my dev branch of Lem.
-
 ## Details
 
 Loads contrib/ollama package to talk to LLM servers.
@@ -35,6 +33,10 @@ Set up vi-mode globally, and paredit-mode in lisp buffers or repls
 This file modifies the behavior of the find-file prompt (C-x C-f).
 
 C-Backspace goes back a whole path node.
+
+### modeline.lisp
+
+By default show less stuff in modeline, and add commands to toggle some info.
 
 ### misc.lisp
 
