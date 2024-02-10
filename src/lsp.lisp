@@ -8,6 +8,14 @@
 (setf yason:*parse-json-null-as-keyword* t)
 (setf yason:*parse-json-arrays-as-vectors* t)
 
+(define-language-spec (elixir-spec lem-elixir-mode:elixir-mode)
+  :language-id "elixir"
+  :root-uri-patterns '("mix.exs")
+  :command '("sh" "-c" "~/elixir/elixir-ls/scripts/language_server.sh 2> /dev/null")
+  :install-command ""
+  :readme-url "https://github.com/elixir-lsp/elixir-ls"
+  :connection-mode :stdio)
+
 ;; (define-language-spec (c-spec lem-c-mode:c-mode)
 ;;   :language-id "c"
 ;;   :root-uri-patterns '("compile-commands.json")

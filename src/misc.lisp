@@ -9,19 +9,14 @@
 
 (remove-hook *after-init-hook* 'lem/frame-multiplexer::enable-frame-multiplexer)
 
-(ignore-errors
-  (lem-if:set-font-size (implementation) 18))
+(ignore-errors (lem-if:set-font-size (implementation) 18))
 
-(ignore-errors
-  "No error if these change names."
-  (setf *scroll-recenter-p* nil
-        lem-shell-mode:*default-shell-command* "/usr/bin/sh"
-        lem-ollama:*host* "192.168.68.110:11434"
-        lem:*auto-format* t))
+(setf *scroll-recenter-p* nil
+      lem:*auto-format* t)
 
-(ignore-errors
-  (register-icon "right-pointing-triangle" #x003E)
-  (register-icon "down-pointing-triangle"  #x0076))
+;; (ignore-errors
+;;   (register-icon "right-pointing-triangle" #x003E)
+;;   (register-icon "down-pointing-triangle"  #x0076))
 
 (define-command open-config () ()
   (line-up-first (lem-home) find-file))
@@ -35,16 +30,6 @@
 
 (define-command toggle-auto-format () ()
   (setf *auto-format* (not *auto-format*)))
-
-(define-command lisp-macroexpand-in-place () ()
-  (lem-lisp-mode:check-connection)
-  (lem-lisp-mode:lisp-eval-async
-   `(micros:swank-macroexpand-1
-     (lem-lisp-mode/internal::form-string-at-point))
-   (lambda (string)
-     (kill-sexp)
-     (insert-string (current-point) string)
-     (indent-buffer (current-buffer)))))
 
 (add-hook (variable-value 'before-save-hook :global t)
           #'delete-trailing-whitespace)
