@@ -11,6 +11,9 @@
 
 (ignore-errors (lem-if:set-font-size (implementation) 18))
 
+(setf lem-shell-mode:*default-shell-command*
+      '("/bin/bash" "-c" "TERM=dumb /bin/bash"))
+
 (setf *scroll-recenter-p* nil
       lem:*auto-format* t)
 
