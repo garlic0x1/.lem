@@ -8,12 +8,19 @@
 (setf yason:*parse-json-null-as-keyword* t)
 (setf yason:*parse-json-arrays-as-vectors* t)
 
+;; (define-language-spec (bash-spec lem-shell-mode::run-shell-mode)
+;;   :language-id "sh"
+;;   :root-uri-patterns '("*")
+;;   :command '("sh" "-c" "bash-language-server start 2> /dev/null")
+;;   :connection-mode :stdio)
+
+(defparameter start-lexical
+  "/home/garlic/elixir/lexical/_build/dev/package/lexical/bin/start_lexical.sh")
+
 (define-language-spec (elixir-spec lem-elixir-mode:elixir-mode)
   :language-id "elixir"
   :root-uri-patterns '("mix.exs")
-  :command '("sh" "-c" "~/elixir/elixir-ls/scripts/language_server.sh 2> /dev/null")
-  :install-command ""
-  :readme-url "https://github.com/elixir-lsp/elixir-ls"
+  :command `("sh" "-c" ,start-lexical)
   :connection-mode :stdio)
 
 ;; (define-language-spec (c-spec lem-c-mode:c-mode)

@@ -31,6 +31,16 @@
   (kill-buffer (current-buffer))
   (delete-window (current-window)))
 
+(defvar *transparent* nil)
+
+(define-command toggle-transparency () ()
+  (sdl2-ffi.functions:sdl-set-window-opacity
+   (lem-sdl2/display::display-window lem-sdl2/display::*display*)
+   (if *transparent*
+       1.0
+       0.7))
+  (setf *transparent* (not *transparent*)))
+
 (define-command toggle-auto-format () ()
   (setf *auto-format* (not *auto-format*)))
 
