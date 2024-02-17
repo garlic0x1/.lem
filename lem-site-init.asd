@@ -6,6 +6,7 @@
   ((:module "src"
     :components ((:file "paredit")
                  (:file "modeline")
+                 (:file "literate")
                  (:file "modes")
                  (:file "lsp")
                  (:file "file-prompt")
