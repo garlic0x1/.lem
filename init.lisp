@@ -8,9 +8,6 @@
 
 ;; Load my init files.
 (let ((asdf:*central-registry*
-        (append
-         (list #P"~/.config/lem/"
-               (asdf:system-source-directory :lem)
-               (asdf:system-relative-pathname :lem #P"contrib/ollama/"))
-         asdf:*central-registry*)))
+        (append (list #P"~/.config/lem/" (asdf:system-source-directory :lem))
+                asdf:*central-registry*)))
   (ql:quickload :lem-site-init))

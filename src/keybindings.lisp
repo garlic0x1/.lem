@@ -17,6 +17,7 @@
   ("C-w n" 'next-buffer)
   ("C-w p" 'previous-buffer)
   ("C-w d" 'lem/language-mode:find-definitions)
+  ("C-w r" 'lem/language-mode:find-references)
   ;; evil nav
   ("C-h" 'window-move-left)
   ("C-j" 'window-move-down)
