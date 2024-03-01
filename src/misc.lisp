@@ -17,10 +17,6 @@
 (setf *scroll-recenter-p* nil
       lem:*auto-format* t)
 
-;; (ignore-errors
-;;   (register-icon "right-pointing-triangle" #x003E)
-;;   (register-icon "down-pointing-triangle"  #x0076))
-
 (define-command open-config () ()
   (line-up-first (lem-home) find-file))
 
@@ -33,6 +29,7 @@
 
 (defvar *transparent* nil)
 
+#+lem-sdl2
 (define-command toggle-transparency () ()
   (sdl2-ffi.functions:sdl-set-window-opacity
    (lem-sdl2/display::display-window lem-sdl2/display::*display*)

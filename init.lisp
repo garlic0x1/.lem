@@ -10,4 +10,5 @@
 (let ((asdf:*central-registry*
         (append (list #P"~/.config/lem/" (asdf:system-source-directory :lem))
                 asdf:*central-registry*)))
-  (ql:quickload :lem-site-init))
+  (ql:quickload :lem-site-init)
+  )
