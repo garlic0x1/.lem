@@ -14,5 +14,5 @@
                  (:file "misc")
                  (:file "places")
                  (:file "keybindings")
-                 (:file "restclient")
+                 ;; (:file "restclient")
                  ))))
