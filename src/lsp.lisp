@@ -31,5 +31,11 @@
 ;;   :readme-url ""
 ;;   :connection-mode :stdio)
 
+(define-language-spec (python-spec lem-python-mode:python-mode)
+  :language-id "python"
+  :root-uri-patterns '("requirements.txt")
+  :command `("sh" "-c" "jedi-language-server")
+  :connection-mode :stdio)
+
 ;; (defmethod spec-initialization-options ((spec c-spec))
 ;;   (make-lsp-map "matcher" "fuzzy"))

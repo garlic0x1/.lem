@@ -4,8 +4,10 @@
   ()
   :components
   ((:module "src"
-    :components ((:file "paredit")
+    :components (
+                 (:file "paredit")
                  (:file "modeline")
+                 ;; (:file "fonts")
                  (:file "modes")
                  (:file "lsp")
                  (:file "file-prompt")

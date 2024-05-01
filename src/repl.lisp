@@ -28,3 +28,7 @@
             :test #'lem-core::fuzzy-match-p)))
   (move-to-end-of-buffer)
   (lem/listener-mode:listener-return))
+
+(define-command slime-reload () ()
+  (lem-lisp-mode:slime-quit)
+  (lem-lisp-mode:slime))

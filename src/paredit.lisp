@@ -47,7 +47,7 @@
   "Insert newline, and correct indentation."
   (insert-character (current-point) #\Newline)
   (unless (point-at-end-p (current-point))
-    (format-lisp-buffer)))
+    (indent-buffer (current-buffer))))
 
 (define-command paredit-backward-delete (&optional (n 1)) ("p")
   "Extension of paredit-backward-delete to add paredit-backline."

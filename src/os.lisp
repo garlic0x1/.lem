@@ -37,3 +37,27 @@
      (buffer-point buf)
      (uiop:run-program cmd :output :string))
     (redraw-display)))
+
+(define-command project-cmd () ()
+  (let* ((cwd (buffer-directory))
+         (project-root (lem-core/commands/project::find-root cwd))
+         (root (or project-root cwd)))
+    (uiop:with-current-directory (root)
+      (cmd))))
+
+(defun running-procs ()
+  (mapcar
+   (lambda (line) (last-elt (str:words line)))
+   (cdr (str:lines (uiop:run-program "ps -a" :output :string)))))
+
+(defun proc-completion (str)
+  (completion str (running-procs) :test #'str:starts-with-p))
+
+(define-command killall () ()
+  (uiop:run-program
+   (uiop:strcat
+    "killall "
+    (prompt-for-string
+     "Process: "
+     :completion-function
+     'proc-completion))))

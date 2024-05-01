@@ -17,3 +17,6 @@
 ; enable paredit in lisp-repl-mode
 (add-hook *lisp-repl-mode-hook*
           (lambda () (paredit-mode t)))
+
+(add-hook lem-scheme-mode::*scheme-mode-hook*
+          (lambda () (paredit-mode t)))
