@@ -4,36 +4,43 @@
   (:export #:open-config #:kill-buffer-and-window #:insert-newline))
 (in-package :config/misc)
 
-(setf lem-scheme-mode:*scheme-run-command*
-      "gerbil"
-      lem-scheme-mode:*scheme-swank-server-run-command*
-      '("sh" "-c" "gxswank --port 4006 --dont-close t"))
+; enable vi mode
+(lem-vi-mode:vi-mode)
 
-(defvar *gerbil-process* nil)
+(progn
+  "enable paredit in lispy stuff"
+  (add-hook *find-file-hook*
+            (lambda (buffer)
+              (when (eq (buffer-major-mode buffer) 'lem-lisp-mode:lisp-mode)
+                (change-buffer-mode buffer 'lem-paredit-mode:paredit-mode t))))
+  (add-hook lem-lisp-mode:*lisp-repl-mode-hook*
+            (lambda () (lem-paredit-mode:paredit-mode t)))
+  (add-hook lem-scheme-mode::*scheme-mode-hook*
+            (lambda () (lem-paredit-mode:paredit-mode t))))
 
-(define-command gerbil-slime () ()
-  (uiop:launch-program lem-scheme-mode:*scheme-swank-server-run-command* :input nil)
-  (sleep 1)
-  (lem-scheme-mode:scheme-slime-connect "127.0.0.1" 4006))
+(define-command tmp-lisp () ()
+  (let ((buffer (make-buffer "*tmp-lisp*")))
+    (pop-to-buffer buffer)
+    (setf (buffer-major-mode buffer) 'lem-lisp-mode:lisp-mode)
+    (push 'lem-paredit-mode:paredit-mode (buffer-minor-modes buffer))))
 
-(define-command gerbil-slime-quit () ()
-  (when (uiop:process-alive-p *gerbil-process*)
-    (uiop:terminate-process *gerbil-process*)))
+;; consult buffers
+(define-command switch-buffer () ()
+  (switch-to-buffer (make-buffer (prompt-for-buffer "Buffer: "))))
+(define-key *global-keymap* "C-x C-b" 'config/misc::switch-buffer)
 
 ;; Open to a Lem REPL
 (lem-lisp-mode:start-lisp-repl t)
 
-(remove-hook *after-init-hook* 'lem/frame-multiplexer::enable-frame-multiplexer)
+;; tidy up unused stuff
+(remove-hook *after-init-hook*
+             'lem/frame-multiplexer::enable-frame-multiplexer)
 
 (ignore-errors (lem-if:set-font-size (implementation) 18))
 
-(setf lem-core/commands/window::*balance-after-split-window* nil)
-
-(setf lem-shell-mode:*default-shell-command*
-      '("/bin/bash" "-c" "TERM=dumb /bin/bash"))
-
 (setf *scroll-recenter-p* nil
-      lem:*auto-format* t)
+      lem:*auto-format* t
+      lem-core/commands/window::*balance-after-split-window* nil)
 
 (define-command open-config () ()
   (line-up-first (lem-home) find-file))
@@ -62,6 +69,7 @@
 (add-hook (variable-value 'before-save-hook :global t)
           #'delete-trailing-whitespace)
 
+;; CREDIT: Fukamachi
 ;; Allow to suspend Lem by C-z.
 ;; It doesn't work well on Mac with Apple Silicon.
 #+(and lem-ncurses (not (and darwin arm64)))
@@ -72,14 +80,16 @@
 
   (define-key *global-keymap* "C-z" 'suspend-editor))
 
-(let ((font-regular #p"/usr/share/fonts/TTF/FiraCodeNerdFont-Regular.ttf")
-      (font-bold #P"/usr/share/fonts/TTF/FiraCodeNerdFontMono-Bold.ttf"))
-  (if (and (uiop:file-exists-p font-regular)
-           (uiop:file-exists-p font-bold))
-      (lem-sdl2/display:change-font (lem-sdl2/display:current-display)
-                                    (lem-sdl2/font:make-font-config
-                                     :latin-normal-file font-regular
-                                     :latin-bold-file font-bold
-                                     :cjk-normal-file font-regular
-                                     :cjk-bold-file font-bold))
-      (message "Fonts not found.")))
+;; Use FiraCode fonts
+(ignore-errors
+  (let ((font-regular #p"/usr/share/fonts/TTF/FiraCodeNerdFont-Regular.ttf")
+        (font-bold #P"/usr/share/fonts/TTF/FiraCodeNerdFontMono-Bold.ttf"))
+    (if (and (uiop:file-exists-p font-regular)
+             (uiop:file-exists-p font-bold))
+        (lem-sdl2/display:change-font (lem-sdl2/display:current-display)
+                                      (lem-sdl2/font:make-font-config
+                                       :latin-normal-file font-regular
+                                       :latin-bold-file font-bold
+                                       :cjk-normal-file font-regular
+                                       :cjk-bold-file font-bold))
+        (message "Fonts not found."))))

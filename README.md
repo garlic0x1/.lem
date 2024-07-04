@@ -6,56 +6,71 @@
 $ git clone https://github.com/garlic0x1/.lem ~/.config/lem
 ```
 
-## Details
+## extensions.lisp
 
-Loads contrib/ollama package to talk to LLM servers.
+- [lem-locals](https://github.com/garlic0x1/lem-locals)
+- [lem-paredit++](https://github.com/garlic0x1/lem-paredit-plus-plus)
 
-### keybindings.lisp
+## keybindings.lisp
 
-Keybindings I like.
+General modifications to the global keymap.
 
-* F11      toggles fullscreen
-* C-w ...  has buffer navigation commands
-* C-[hjkl] switches windows vi-style
-* M-l ...  starts repls
-* C-[,.]   paredit slurp/spit
+- "C-[hjkl]": Switches windows with vi keys.
+- "C-w *": Misc navigation for definitions/references and windows.
+- "M-l *": Open up REPLs.
+- "F11": Toggle fullscreen.
 
-### paredit.lisp
+## completions.lisp
 
-Improvements to paredit-mode, with vi-mode in mind.  Some of this is to emulate what I like about emacs' lispyville.
+Modifications to completions (and also prompting right now).
 
-### modes.lisp
+Completions automatically present themselves on a prompt,
+after enter, and on backspace.
 
-Set up vi-mode globally, and paredit-mode in lisp buffers or repls
+Prompts are shown on the bottom, with completions
+like the inverse of Emacs' Vertico.
 
-### file-prompt.lisp
+## file-prompt.lisp
 
-This file modifies the behavior of the find-file prompt (C-x C-f).
+Make backspace cut a node off the file tree,
+something I like to help move around faster.
 
-C-Backspace goes back a whole path node.
+## os.lisp
 
-### modeline.lisp
+A set of commands to help me interact with my OS,
+I mostly just use `M-x killall` and `M-x delete-current-file`.
 
-By default show less stuff in modeline, and add commands to toggle some info.
+## modeline.lisp
 
-### misc.lisp
+I have slimmed down the modeline, removing buffer percentage,
+and hiding minor modes and lisp package by default.
 
-Set some internal values and replaces some emojis to patch an issue with dependencies on Arch and OpenBSD. (you might not need these)
+It looks ugly with my screen size to have
+too many things crowding the modeline.
 
-Turns on auto-formatting and deleting trailing spaces on save.
+## misc.lisp
 
-Allow C-z to suspend in ncurses.
+Non-comprehensive list of things here:
 
-M-x open-config
-M-x kill-buffer-and-window
+- Transparency toggle for SDL2.
+- Enable C-z suspend for ncurses.
+- Enable Vi mode globally, and set up hooks for Paredit.
+- Boot to a REPL.
+- Enable auto-formatting and automatically delete trailing spaces.
+- Disable scroll recentering.
+- Disable auto-balancing windows.
+- Load FiraCode fonts if possible.
 
-## Troubleshooting
+...
+and other miscellaneous commands.
 
-If you get issues with SDL2 throwing a null pointer issue then you must debug the way SDL2_ttf is built.
+## places.lisp
 
-On Arch, install this package to fix the issue: [garlic0x1/sdl2_ttf](https://github.com/garlic0x1/sdl2_ttf).
+Use "C-x C-d" to fuzzy-find files in recently visited areas.
 
-(This patch is in the main repositories now, so it should no longer be an issue.)
+## repl.lisp
+
+Use "C-c C-h" to fuzzy-find things in REPL history.
 
 ## See Also
 

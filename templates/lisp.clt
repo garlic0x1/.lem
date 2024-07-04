@@ -1,3 +1,0 @@
-(defpackage #:<%= (pathname-name (lem:buffer-filename (@ buffer))) %>
-  (:use :cl))
-(in-package :<%= (pathname-name (lem:buffer-filename (@ buffer))) %>)

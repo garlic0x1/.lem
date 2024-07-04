@@ -3,3 +3,4 @@ config.lisp
 .log
 logs/
 packages/
+scratch/

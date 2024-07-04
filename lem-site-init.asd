@@ -4,17 +4,12 @@
   ()
   :components
   ((:module "src"
-    :components (
-                 (:file "paredit")
-                 (:file "modeline")
-                 ;; (:file "fonts")
-                 (:file "modes")
-                 (:file "lsp")
+    :components ((:file "modeline")
                  (:file "file-prompt")
                  (:file "repl")
                  (:file "os")
                  (:file "misc")
                  (:file "places")
-                 (:file "keybindings")
-                 ;; (:file "restclient")
-                 ))))
+                 (:file "extensions")
+                 (:file "completions")
+                 (:file "keybindings")))))

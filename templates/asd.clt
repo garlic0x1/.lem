@@ -1,6 +1,0 @@
-(asdf:defsystem "<%= (pathname-name (@ path)) %>"
-  :author ""
-  :license "MIT"
-  :depends-on ()
-  :components ((:module "src"
-                :components ((:file "core")))))

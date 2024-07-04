@@ -66,3 +66,6 @@
 
 (add-hook *after-init-hook* 'load-places)
 (add-hook *exit-editor-hook* 'save-places)
+
+
+(define-key *global-keymap* "C-x C-d" 'recent-places)
