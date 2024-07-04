@@ -5,6 +5,7 @@
   :components
   ((:module "src"
     :components ((:file "modeline")
+                 (:file "appearance")
                  (:file "file-prompt")
                  (:file "repl")
                  (:file "os")

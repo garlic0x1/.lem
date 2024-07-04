@@ -1,9 +1,8 @@
 (defpackage #:config/file-prompt
-  (:use :cl :lem :alexandria-2)
-  (:local-nicknames (#:prompt #:lem/prompt-window))
-  (:export :fp-find-file
-           :fp-up-directory))
+  (:use :cl :lem :alexandria-2))
 (in-package :config/file-prompt)
+
+(define-key *global-keymap* "C-x C-f" 'fp-find-file)
 
 (define-command fp-find-file () ()
   "find-file with backspace bound to up-directory."
@@ -14,14 +13,12 @@
 
 (define-command fp-up-directory () ()
   "Delete the last path segment in file prompt."
-  (when-let* ((pwindow (prompt::current-prompt-window))
-              (wstring (and pwindow (prompt::get-input-string))))
-    (prompt::replace-prompt-input
+  (when-let* ((pwindow (lem/prompt-window::current-prompt-window))
+              (wstring (and pwindow (lem/prompt-window::get-input-string))))
+    (lem/prompt-window::replace-prompt-input
      (ignore-errors
        (let* ((trimmed (str:trim-right wstring :char-bag '(#\/ )))
               (endp (1+ (position #\/ trimmed :from-end t :test #'char-equal))))
          (subseq trimmed 0 endp))))
     (lem/completion-mode::completion-end)
     (ignore-errors (lem/prompt-window::prompt-completion))))
-
-(define-key *global-keymap* "C-x C-f" 'fp-find-file)
