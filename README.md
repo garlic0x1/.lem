@@ -26,10 +26,9 @@ General modifications to the global keymap.
 
 Modifications to completions (and also prompting right now).
 
-Completions automatically present themselves on a prompt,
+- Completions automatically present themselves on a prompt,
 after enter, and on backspace.
-
-Prompts are shown on the bottom, with completions
+- Prompts are shown on the bottom, with completions
 like the inverse of Emacs' Vertico.
 
 ## file-prompt.lisp
@@ -61,10 +60,16 @@ Non-comprehensive list of things here:
 - Enable auto-formatting and automatically delete trailing spaces.
 - Disable scroll recentering.
 - Disable auto-balancing windows.
-- Load FiraCode fonts if possible.
 
 ...
 and other miscellaneous commands.
+
+## appearance.lisp
+
+- Load FiraCode fonts if possible.
+- Make text big.
+- Disable multiplexer bar.
+
 
 ## places.lisp
 
