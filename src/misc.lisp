@@ -1,5 +1,5 @@
 (defpackage :config/misc
-  (:use :cl :lem :alexandria-2))
+  (:use :cl :lem))
 (in-package :config/misc)
 
 ;;----------;;
@@ -18,7 +18,7 @@
 (define-key *global-keymap* "C-q q" 'kill-buffer-and-window)
 
 (define-command open-config () ()
-  (line-up-first (lem-home) find-file))
+  (find-file (lem-home)))
 
 (define-command tmp-lisp () ()
   "Open a temporary Lisp buffer."

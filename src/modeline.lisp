@@ -1,5 +1,5 @@
 (defpackage #:config/modeline
-  (:use :cl :lem :alexandria-2))
+  (:use :cl :lem))
 (in-package :config/modeline)
 
 ;; ugly mess to make the modeline act how I want with ability to hide parts

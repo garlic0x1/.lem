@@ -33,9 +33,4 @@
 ;; Misc
 (define-keys *global-keymap*
   ("C-x C-c" nil)                         ;; dont exit when button mash
-  ("C-x C-b" 'config/misc::switch-buffer) ;; consult buffers
   ("F11" 'toggle-frame-fullscreen))
-
-;; (define-keys lem-scheme-mode:*scheme-mode-keymap*
-;;   ("C-c C-c" 'lem-scheme-mode::scheme-eval-define)
-;;   ("C-c C-k" 'lem-scheme-mode::scheme-eval-buffer))

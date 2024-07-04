@@ -1,5 +1,5 @@
 (defpackage #:config/file-prompt
-  (:use :cl :lem :alexandria-2))
+  (:use :cl :lem))
 (in-package :config/file-prompt)
 
 (define-key *global-keymap* "C-x C-f" 'fp-find-file)
@@ -13,8 +13,9 @@
 
 (define-command fp-up-directory () ()
   "Delete the last path segment in file prompt."
-  (when-let* ((pwindow (lem/prompt-window::current-prompt-window))
-              (wstring (and pwindow (lem/prompt-window::get-input-string))))
+  (alexandria:when-let*
+      ((pwindow (lem/prompt-window::current-prompt-window))
+       (wstring (and pwindow (lem/prompt-window::get-input-string))))
     (lem/prompt-window::replace-prompt-input
      (ignore-errors
        (let* ((trimmed (str:trim-right wstring :char-bag '(#\/ )))
