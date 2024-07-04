@@ -9,13 +9,13 @@
 (define-command switch-buffer () ()
   "Consult buffers."
   (switch-to-buffer (make-buffer (prompt-for-buffer "Buffer: "))))
-(define-key *global-keymap* "C-x C-b" 'config/misc::switch-buffer)
+(define-key *global-keymap* "C-x C-b" 'switch-buffer)
 
 (define-command kill-buffer-and-window () ()
   "Superquit."
   (kill-buffer (current-buffer))
   (delete-window (current-window)))
-(define-key *global-keymap* "C-q q" 'config/misc:kill-buffer-and-window)
+(define-key *global-keymap* "C-q q" 'kill-buffer-and-window)
 
 (define-command open-config () ()
   (line-up-first (lem-home) find-file))
