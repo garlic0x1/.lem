@@ -15,10 +15,12 @@ $ git clone https://github.com/garlic0x1/.lem ~/.config/lem
 
 General modifications to the global keymap.
 
-- "C-[hjkl]": Switches windows with vi keys.
-- "C-w *": Misc navigation for definitions/references and windows.
-- "M-l *": Open up REPLs.
-- "F11": Toggle fullscreen.
+| Binding  | Description                          |
+| -------- | ------------------------------------ |
+| C-[hjkl] | Switches windows with vi keys        |
+| C-w *    | Misc navigation for code and windows |
+| M-l *    | Open up REPLs                        |
+| F11      | Toggle fullscreen                    |
 
 ## completions.lisp
 
