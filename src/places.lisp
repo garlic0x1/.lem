@@ -44,11 +44,6 @@
    (mapcar #'files-in-place)
    (apply #'append)))
 
-;; (define-command list-recent-places () ()
-;;   (lem-markdown-mode/interactive::pop-up-buffer
-;;    "*places*"
-;;    (format nil "~a" *places*)))
-
 (define-command recent-places () ()
   "Fuzzy select a file from recently accessed places."
   (find-file

@@ -6,11 +6,6 @@
 $ git clone https://github.com/garlic0x1/.lem ~/.config/lem
 ```
 
-## extensions.lisp
-
-- [lem-locals](https://github.com/garlic0x1/lem-locals)
-- [lem-paredit++](https://github.com/garlic0x1/lem-paredit-plus-plus)
-
 ## keybindings.lisp
 
 General modifications to the global keymap.
@@ -21,6 +16,18 @@ General modifications to the global keymap.
 | C-w *    | Misc navigation for code and windows |
 | M-l *    | Open up REPLs                        |
 | F11      | Toggle fullscreen                    |
+
+## paredit++.lisp
+
+Quality of life improvements for paredit-mode.
+
+- Auto-formatting on newlines and backspace.
+- Backspace clears preceding whitespace.
+- Custom keybindings.
+
+## locals.lisp
+
+Directory-local dictionaries.
 
 ## completions.lisp
 

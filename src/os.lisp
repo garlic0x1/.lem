@@ -16,7 +16,7 @@
       (uiop:delete-file-if-exists file)
       (kill-buffer (current-buffer)))))
 
-(define-command delete-file-on-disk (file) ("fFile: ")
+(define-command delete-file-on-disk (file) ((:file "File: "))
   "Select a file on disk to delete."
   (when (prompt-for-y-or-n-p (format nil "Delete ~a" file))
     (uiop:delete-file-if-exists file)))
