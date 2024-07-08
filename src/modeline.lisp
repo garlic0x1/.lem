@@ -1,13 +1,5 @@
 (defpackage #:config/modeline
-  (:use :cl :lem :alexandria-2)
-  (:import-from #:lem-lisp-mode
-                :lisp-mode
-                :current-connection
-                :buffer-package
-                :self-connection-p)
-  (:import-from #:lem-lisp-mode/swank-protocol
-                :connection-pid
-                :connection-implementation-name))
+  (:use :cl :lem))
 (in-package :config/modeline)
 
 ;; ugly mess to make the modeline act how I want with ability to hide parts
@@ -40,15 +32,18 @@
 
 (lem-vi-mode/modeline::initialize-vi-modeline)
 
-(defmethod lem-core:convert-modeline-element ((element (eql 'lisp-mode)) window)
+(defmethod lem-core:convert-modeline-element
+    ((element (eql 'lem-lisp-mode::lisp-mode)) window)
   "Remove package name from lisp modeline."
   (format nil "  ~A~A"
           (if *show-lisp-package*
-              (buffer-package (window-buffer window) "CL-USER")
+              (lem-lisp-mode::buffer-package (window-buffer window) "CL-USER")
               "")
-          (if (and *show-lisp-connection* (current-connection))
+          (if (and *show-lisp-connection* (lem-lisp-mode::current-connection))
               (format nil " ~A:~A"
-                      (connection-implementation-name (current-connection))
-                      (or (self-connection-p (current-connection))
+                      (lem-lisp-mode/swank-protocol::connection-implementation-name
+                       (lem-lisp-mode::current-connection))
+                      (or (lem-lisp-mode::self-connection-p
+                           (lem-lisp-mode::current-connection))
                           "micros"))
               "")))

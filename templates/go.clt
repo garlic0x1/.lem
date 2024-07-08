@@ -1,5 +1,0 @@
-package <%= (pathname-name (lem:buffer-filename (@ buffer))) %>
-
-import (
-    "fmt"
-)

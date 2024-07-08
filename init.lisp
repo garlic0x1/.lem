@@ -8,7 +8,9 @@
 
 ;; Load my init files.
 (let ((asdf:*central-registry*
-        (append (list #P"~/.config/lem/" (asdf:system-source-directory :lem))
+        (append (list (asdf:system-source-directory :lem)
+                      #P"~/.config/lem/" 
+                      #P"~/quicklisp/local-projects/"
+                      #P"~/common-lisp/")
                 asdf:*central-registry*)))
-   (ql:quickload :lem-site-init)
-  )
+  (ql:quickload :lem-site-init))
