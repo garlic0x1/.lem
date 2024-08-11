@@ -3,6 +3,7 @@
 (in-package :config/appearance)
 
 ;; Use FiraCode fonts
+#+lem-sdl2
 (ignore-errors
   (let ((font-regular #p"/usr/share/fonts/TTF/FiraCodeNerdFont-Regular.ttf")
         (font-bold #P"/usr/share/fonts/TTF/FiraCodeNerdFontMono-Bold.ttf"))
@@ -21,4 +22,5 @@
              'lem/frame-multiplexer::enable-frame-multiplexer)
 
 ;; Big Font
+#+lem-sdl2
 (lem-if:set-font-size (implementation) 18)

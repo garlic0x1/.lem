@@ -73,7 +73,7 @@
 ;; Implementation-specific Config ;;
 ;;--------------------------------;;
 
-#+lem-sdl2
+#-lem-ncurses
 (progn
   "Transparency toggler for SDL2 frontend."
   (defvar *transparent* nil)
@@ -85,7 +85,7 @@
          0.7))
     (setf *transparent* (not *transparent*))))
 
-#+(and lem-ncurses (not (and darwin arm64)))
+#+lem-ncurses
 (progn
   "CREDIT: Fukamachi
    Allow suspend with C-z like other terminal apps.
