@@ -14,21 +14,22 @@
 (defun whitespace-prefix-p (point)
   "Test if the point is prefixed only by whitespace in a line."
   (ignore-errors
-    (let ((prefix (subseq (line-string point) 0 (point-column point))))
-      (not (find-if-not #'syntax-space-char-p prefix)))))
+    (not (find-if-not #'syntax-space-char-p
+                      (line-string point)
+                      :end (point-column point)))))
 
 (defun forward-skip-whitespace (point)
   "Move point to the next character on the line that is not whitespace."
   (loop :for p := (character-at point)
         :while (syntax-space-char-p p)
-        :while (not (eq #\Newline p))
+        :while (not (char= #\Newline p))
         :do (character-offset point 1)))
 
 (defun space-between-p (prev next)
   "True if there should be a space between characters prev and next."
   (not (or (syntax-space-char-p next)
-           (eq #\) next)
-           (eq #\( prev))))
+           (char= #\) next)
+           (char= #\( prev))))
 
 (defun p++-backline (point)
   "Go back a line, like lispy-mode."
@@ -36,7 +37,7 @@
   (delete-trailing-whitespace)
   (delete-previous-char (1+ (point-column point)))
   (when (space-between-p (character-at point -1) (character-at point))
-    (insert-character point #\ ))
+    (insert-character point #\Space))
   (indent-current-buffer))
 
 (defun point-at-end-p (point)
@@ -49,9 +50,9 @@
   (unless (point-at-end-p (current-point))
     (indent-buffer (current-buffer))))
 
-(define-command p++-backward-delete (&optional (n 1)) ("p")
+(define-command p++-backward-delete (&optional (n 1)) ((:universal))
   "Extension of paredit-backward-delete to add paredit-backline."
-  (when (< 0 n)
+  (when (plusp n)
     (let ((p (current-point)))
       (if (whitespace-prefix-p p)
           (p++-backline p)
